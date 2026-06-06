@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Plan — ArsuAI</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            --white: #ffffff;
+            --off-white: #f8f8f6;
+            --border: #e5e4e0;
+            --text-dark: #111110;
+            --text-muted: #6b6a66;
+            --green: #22c55e;
+            --wa-dark: #128c7e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--off-white);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 450px;
+            border: 1px solid var(--border);
+        }
+
+        h1 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        p.subtext {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select {
+            width: 100%;
+            padding: 0.85rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+            background: var(--white);
+            color: var(--text-dark);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111110' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+            cursor: pointer;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        select:focus {
+            border-color: var(--wa-dark);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 0.85rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 1rem;
+        }
+
+        .btn-submit:hover {
+            background: #333;
+        }
+
+        .btn-submit:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+            text-align: center;
+        }
+
+        .message.error {
+            background: #fee2e2;
+            color: #b91c1c;
+            display: block;
+        }
+
+        .message.success {
+            background: #dcfce7;
+            color: #15803d;
+            display: block;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--text-dark);
+        }
+
+        .contact-info {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .contact-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .contact-item {
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .contact-item strong {
+            font-weight: 600;
+        }
+
+        .contact-item a {
+            color: var(--wa-dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+        <h1>Request Plan</h1>
+        <p class="subtext">Please enter your details to proceed with the selected plan.</p>
+
+        <form id="requestForm">
+            <div class="form-group">
+                <label for="plan">Selected Plan</label>
+                <select id="plan" name="plan" required>
+                    <option value="Starter">Starter Setup</option>
+                    <option value="As We Go">As We Go</option>
+                    <option value="Enterprise">Enterprise</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="+91 9876543210" required>
+            </div>
+
+            <button type="submit" id="submitBtn" class="btn-submit">Submit Request</button>
+        </form>
+
+        <div id="statusMessage" class="message"></div>
+
+        <div class="contact-info">
+            <p>Or contact us directly:</p>
+            <div class="contact-item">
+                <strong>WhatsApp:</strong> <a href="https://wa.me/919471435386" target="_blank">+91 94714 35386</a>
+            </div>
+            <div class="contact-item">
+                <strong>Email:</strong>
+                <a href="mailto:arsuai.support@gmail.com">arsuai.support@gmail.com</a>,
+                <a href="mailto:r89252587@gmail.com">r89252587@gmail.com</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // REPLACE THESE WITH YOUR ACTUAL SUPABASE URL AND ANON KEY
+        const SUPABASE_URL = 'https://ayocajoflbxorbqqwrxu.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF5b2Nham9mbGJ4b3JicXF3cnh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA3MzQ1MjgsImV4cCI6MjA5NjMxMDUyOH0.iBwYoZEsY6ipVAr-wlqoGlLnUtk9aKsoYrGXNrNyxIw';
+
+        // Ensure you have created a table named 'requests' in Supabase with columns: email, phone, plan, created_at
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Get plan from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const planName = urlParams.get('plan');
+        if (planName) {
+            const planSelect = document.getElementById('plan');
+            // Check if plan exists in options
+            for (let i = 0; i < planSelect.options.length; i++) {
+                if (planSelect.options[i].value === planName) {
+                    planSelect.value = planName;
+                    break;
+                }
+            }
+        }
+
+        const form = document.getElementById('requestForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const statusMessage = document.getElementById('statusMessage');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Check if Supabase keys are configured
+            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+                showMessage('Please configure your Supabase URL and Key in the code first.', 'error');
+                return;
+            }
+
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const plan = document.getElementById('plan').value;
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Processing...';
+            statusMessage.className = 'message'; // reset
+
+            try {
+                // 1. Check if email or phone already exists
+                const { data: existingData, error: checkError } = await supabaseClient
+                    .from('requests')
+                    .select('*')
+                    .or(`email.eq.${email},phone.eq.${phone}`);
+
+                if (checkError) throw checkError;
+
+                if (existingData && existingData.length > 0) {
+                    showMessage('You have already requested a plan using this email or phone number.', 'error');
+                    return;
+                }
+
+                // 2. Insert new record
+                const { error: insertError } = await supabaseClient
+                    .from('requests')
+                    .insert([
+                        { email, phone, plan }
+                    ]);
+
+                if (insertError) throw insertError;
+
+                alert('Success! Your request has been successfully saved to the database.');
+                showMessage('Thank you! Your request has been received. We will contact you shortly.', 'success');
+                form.reset();
+                if (planName) {
+                    const planSelect = document.getElementById('plan');
+                    for (let i = 0; i < planSelect.options.length; i++) {
+                        if (planSelect.options[i].value === planName) {
+                            planSelect.value = planName;
+                            break;
+                        }
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('An error occurred. Please try again later.', 'error');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Request';
+            }
+        });
+
+        function showMessage(msg, type) {
+            statusMessage.textContent = msg;
+            statusMessage.className = `message ${type}`;
+        }
+    </script>
+</body>
+
+</html>
