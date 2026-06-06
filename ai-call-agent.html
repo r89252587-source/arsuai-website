@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Call Agent — ArsuAI</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --white:#ffffff;
+  --off-white:#f8f8f6;
+  --light-gray:#f0efeb;
+  --border:#e5e4e0;
+  --text-dark:#111110;
+  --text-muted:#6b6a66;
+  --text-light:#9b9a96;
+  --green:#22c55e;
+  --green-light:#dcfce7;
+  --green-dark:#15803d;
+  --wa-green:#25d366;
+  --wa-dark:#128c7e;
+  --brand-color: #8b5cf6;
+  --brand-light: #ede9fe;
+}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;line-height:1.6}
+h1,h2,h3,h4,.brand{font-family:'Syne',sans-serif}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;text-decoration:none;color:var(--text-dark);}
+.nav-brand span{color:var(--wa-dark)}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.9rem;font-weight:500;transition:color 0.2s}
+.nav-links a:hover{color:var(--text-dark)}
+.nav-cta{background:var(--text-dark);color:var(--white)!important;padding:0.5rem 1.2rem;border-radius:8px;font-weight:500!important;font-size:0.85rem!important}
+
+/* INNER HERO */
+.inner-hero {
+  padding: 140px 5% 80px;
+  background: linear-gradient(135deg, var(--brand-light) 0%, var(--off-white) 100%);
+  text-align: center;
+  position: relative;
+}
+.inner-hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.2rem;
+  color: var(--text-dark);
+}
+.inner-hero h1 span {
+  color: var(--brand-color);
+}
+.inner-hero p {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+/* CONTENT SECTIONS */
+.section-pad { padding: 100px 5%; }
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-label { font-size: 0.85rem; font-weight: 700; color: var(--brand-color); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
+.section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; }
+
+/* SERVICES OFFERED */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+.service-box {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.service-box:hover {
+  border-color: var(--brand-color);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+.service-box .icon {
+  width: 56px;
+  height: 56px;
+  background: var(--brand-light);
+  color: var(--brand-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.service-box h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.service-box p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* CTA */
+.cta-section{padding:80px 5%;background:var(--text-dark);color:var(--white);text-align:center}
+.cta-section h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem}
+.cta-sub{color:#999;font-size:1rem;margin-bottom:2rem;font-weight:300}
+.btn-wa{background:var(--brand-color);color:white;padding:0.85rem 2rem;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;transition:opacity 0.2s}
+.btn-wa:hover{opacity:0.9}
+
+/* FOOTER */
+footer{background:#0d0d0c;color:#666;padding:2.5rem 5%;display:flex;align-items:center;justify-content:space-between;font-size:0.82rem;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:'Syne',sans-serif;font-weight:800;color:#999}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .services-grid { grid-template-columns: 1fr; }
+  footer { flex-direction: column; text-align: center; justify-content: center; }
+}
+
+/* DEMO STYLES */
+
+.call-mockup { max-width: 500px; margin: 0 auto; background: #fff; border: 1px solid #ddd; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.call-header { background: var(--brand-color); color: #fff; padding: 25px 20px; text-align: center; }
+.call-avatar { width: 70px; height: 70px; border-radius: 50%; background: #fff; margin: 0 auto 10px; display:flex; align-items:center; justify-content:center; font-size: 2rem;}
+.call-body { padding: 20px; display:flex; flex-direction:column; gap:15px; height: 350px; overflow-y:auto; background: #f8fafc;}
+.call-bubble { padding: 12px 16px; border-radius: 16px; font-size: 0.9rem; max-width: 85%; opacity:0; transform:translateY(10px); transition: all 0.4s; line-height: 1.5;}
+.call-bubble.show { opacity:1; transform:translateY(0); }
+.cb-ai { background: #fff; align-self: flex-start; color: #333; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
+.cb-user { background: var(--brand-light); align-self: flex-end; color: var(--brand-color); border-bottom-right-radius: 4px; }
+.demo-section { text-align: center; max-width: 800px; margin: 0 auto; }
+        
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">Auto<span>Flow</span></a>
+  <div class="nav-links">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#process">How It Works</a>
+    <a href="index.html#contact" class="nav-cta">Get Started</a>
+  </div>
+</nav>
+
+<header class="inner-hero">
+  <h1><span>AI Call</span> Agent</h1>
+  <p>Voice AI agents that call leads, handle inbound calls, qualify prospects, and speak natural Hindi/English.</p>
+  <a href="#demo" class="btn-wa" style="margin-top: 1rem;">See Live Demo ↓</a>
+</header>
+
+<section class="section-pad">
+  <div class="section-header">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">What We Build For You</h2>
+  </div>
+  <div class="services-grid">
+    
+    <div class="service-box">
+      <div class="icon">📞</div>
+      <h3>Inbound Call Handling</h3>
+      <p>Never miss a call again. AI answers inbound calls, resolves queries, or routes them to the right person.</p>
+    </div>
+    <div class="service-box">
+      <div class="icon">🚀</div>
+      <h3>Outbound Dialer</h3>
+      <p>Automatically call new leads within 5 minutes of sign-up to qualify them while they are still hot.</p>
+    </div>
+    <div class="service-box">
+      <div class="icon">🗣️</div>
+      <h3>Multilingual Support</h3>
+      <p>Agents converse naturally in Hindi, English, and regional languages with local accents.</p>
+    </div>
+    <div class="service-box">
+      <div class="icon">📊</div>
+      <h3>Call Transcripts</h3>
+      <p>Every call is recorded, transcribed, and summarized automatically in your CRM.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section-pad" id="demo" style="background:var(--off-white)">
+  
+  <div class="demo-section">
+    <div class="section-label">Live Demo</div>
+    <h3 class="section-title" style="margin-bottom:1rem; font-size:2.2rem;">Live Call Transcription</h3>
+    <p style="color:var(--text-muted); margin-bottom:2.5rem;">Experience a natural conversation where AI qualifies a lead over the phone.</p>
+    
+    <div class="call-mockup">
+      <div class="call-header">
+        <div class="call-avatar">🤖</div>
+        <h3 style="font-size: 1.2rem;">Calling Lead...</h3>
+        <p style="font-size: 0.85rem; opacity: 0.8;">00:45</p>
+      </div>
+      <div class="call-body">
+        <div class="call-bubble cb-ai" id="c1">"Hi, am I speaking with Rahul?"</div>
+        <div class="call-bubble cb-user" id="c2">"Yes, speaking."</div>
+        <div class="call-bubble cb-ai" id="c3">"Hi Rahul, this is ArsuAI AI. I saw you just downloaded our e-book on automation. I'm calling to see if you have any questions?"</div>
+        <div class="call-bubble cb-user" id="c4">"Yeah, actually I was wondering if this works for real estate?"</div>
+        <div class="call-bubble cb-ai" id="c5">"Absolutely! We have great workflows for real estate lead qualification. Would you be open to a 10-minute demo tomorrow at 2 PM?"</div>
+        <div class="call-bubble cb-user" id="c6">"Sure, 2 PM works."</div>
+      </div>
+    </div>
+  </div>
+        
+</section>
+
+<section class="cta-section">
+  <h2>Ready to Scale Automatically?</h2>
+  <p class="cta-sub">Stop doing manual work. Let AI handle the heavy lifting.</p>
+  <a href="index.html#contact" class="btn-wa">
+    Book a Strategy Call
+  </a>
+</section>
+
+<footer>
+  <div class="footer-brand">ArsuAI</div>
+  <div>AI Automation Agency · Patna, Bihar · India</div>
+  <div>© 2025 ArsuAI. All rights reserved.</div>
+</footer>
+
+<script>
+
+const seq = [
+  {id:'c1', delay:500},
+  {id:'c2', delay:2000},
+  {id:'c3', delay:3500},
+  {id:'c4', delay:6000},
+  {id:'c5', delay:8000},
+  {id:'c6', delay:11000},
+];
+function runAnim() {
+  document.querySelectorAll('.call-bubble').forEach(el => el.classList.remove('show'));
+  seq.forEach(s => {
+    setTimeout(() => {
+      const el = document.getElementById(s.id);
+      if (el) el.classList.add('show');
+    }, s.delay);
+  });
+}
+runAnim();
+setInterval(runAnim, 14000);
+        
+</script>
+</body>
+</html>

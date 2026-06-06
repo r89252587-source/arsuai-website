@@ -1,0 +1,1662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArsuAI — AI Automation Agency</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        :root {
+            --white: #ffffff;
+            --off-white: #f8f8f6;
+            --light-gray: #f0efeb;
+            --border: #e5e4e0;
+            --text-dark: #111110;
+            --text-muted: #6b6a66;
+            --text-light: #9b9a96;
+            --green: #22c55e;
+            --green-light: #dcfce7;
+            --green-dark: #15803d;
+            --accent: #0ea5e9;
+            --accent-light: #e0f2fe;
+            --wa-green: #25d366;
+            --wa-dark: #128c7e;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            line-height: 1.6
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .brand {
+            font-family: 'Syne', sans-serif
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 5%;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .nav-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: -0.02em
+        }
+
+        .nav-brand span {
+            color: var(--wa-dark)
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s
+        }
+
+        .nav-links a:hover {
+            color: var(--text-dark)
+        }
+
+        .nav-cta {
+            background: var(--text-dark);
+            color: var(--white) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-weight: 500 !important;
+            font-size: 0.85rem !important
+        }
+
+        /* HERO */
+        .hero {
+            padding: 120px 5% 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 55%;
+            height: 100%;
+            background: var(--off-white);
+            clip-path: polygon(8% 0, 100% 0, 100% 100%, 0 100%);
+            z-index: 0
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 560px
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: var(--green-light);
+            color: var(--green-dark);
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem
+        }
+
+        .badge-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 1
+            }
+
+            50% {
+                transform: scale(1.4);
+                opacity: 0.6
+            }
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.2rem
+        }
+
+        h1 .highlight {
+            color: var(--wa-dark)
+        }
+
+        .hero-sub {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            font-weight: 300
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap
+        }
+
+        .btn-primary {
+            background: var(--text-dark);
+            color: var(--white);
+            padding: 0.75rem 1.8rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s
+        }
+
+        .btn-primary:hover {
+            background: #333
+        }
+
+        .btn-sec {
+            background: transparent;
+            color: var(--text-dark);
+            padding: 0.75rem 1.8rem;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s
+        }
+
+        .btn-sec:hover {
+            border-color: var(--text-dark)
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border)
+        }
+
+        .stat-num {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.1rem
+        }
+
+        /* HERO GRAPHICS */
+        .hero-graphics {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            width: 400px;
+            height: 400px;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .hg-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80px;
+            height: 80px;
+            background: var(--text-dark);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 0 0 15px rgba(17, 17, 16, 0.05);
+            z-index: 10;
+        }
+
+        .hg-center::after {
+            content: '';
+            position: absolute;
+            inset: -15px;
+            border-radius: 50%;
+            border: 1px solid var(--text-dark);
+            opacity: 0.1;
+            animation: ripple 2s infinite;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.2;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .hg-icon {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            margin-top: -25px;
+            margin-left: -25px;
+            background: var(--white);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            z-index: 5;
+            border: 1px solid var(--border);
+            animation: floatNode 4s ease-in-out infinite;
+        }
+
+        .hg-wa {
+            background: #e8fdf0;
+            border-color: #e8fdf0;
+            animation-delay: 0s;
+        }
+
+        .hg-meta {
+            background: #e0f2fe;
+            border-color: #e0f2fe;
+            animation-delay: 0.3s;
+        }
+
+        .hg-gads {
+            background: #f0efeb;
+            border-color: #f0efeb;
+            animation-delay: 0.6s;
+        }
+
+        .hg-gpt {
+            background: #dcfce7;
+            border-color: #dcfce7;
+            animation-delay: 0.9s;
+        }
+
+        .hg-yt {
+            background: #fee2e2;
+            border-color: #fee2e2;
+            animation-delay: 1.2s;
+        }
+
+        .hg-fb {
+            background: #e0f2fe;
+            border-color: #e0f2fe;
+            animation-delay: 1.5s;
+        }
+
+        .hg-n8n {
+            background: #ffedd5;
+            border-color: #ffedd5;
+            animation-delay: 1.8s;
+        }
+
+        .hg-ig {
+            background: #fce8ef;
+            border-color: #fce8ef;
+            animation-delay: 2.1s;
+        }
+
+        .hg-ai {
+            background: #ede9fe;
+            border-color: #ede9fe;
+            animation-delay: 2.4s;
+        }
+
+        .hg-em {
+            background: #f0efeb;
+            border-color: #f0efeb;
+            animation-delay: 2.7s;
+        }
+
+        @keyframes floatNode {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        .hg-lines {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            color: var(--text-muted);
+        }
+
+        .hg-lines svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+        }
+
+        /* WHATSAPP ANIMATION SECTION */
+        .wa-section {
+            padding: 80px 5%;
+            background: var(--off-white)
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem
+        }
+
+        .section-title {
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem
+        }
+
+        .section-sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            font-weight: 300;
+            max-width: 480px
+        }
+
+        .wa-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem
+        }
+
+        .wa-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem
+        }
+
+        .wa-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.2rem;
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            transition: all 0.3s;
+            cursor: default
+        }
+
+        .wa-feature:hover {
+            border-color: var(--wa-green);
+            transform: translateX(4px)
+        }
+
+        .wa-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: var(--green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 1.2rem
+        }
+
+        .wa-feat-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem
+        }
+
+        .wa-feat-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.5
+        }
+
+        /* WA PHONE MOCKUP */
+        .phone-wrap {
+            display: flex;
+            justify-content: center;
+            position: relative
+        }
+
+        .phone {
+            width: 260px;
+            background: #0b141a;
+            border-radius: 32px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.18);
+            border: 8px solid #1a2733
+        }
+
+        .phone-header {
+            background: #1f2c34;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px
+        }
+
+        .phone-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--wa-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: white
+        }
+
+        .phone-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #e9edef
+        }
+
+        .phone-status {
+            font-size: 0.7rem;
+            color: #8696a0
+        }
+
+        .phone-body {
+            padding: 12px;
+            min-height: 300px;
+            background: #0b141a;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative
+        }
+
+        .chat-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.04;
+            background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%);
+            background-size: 20px 20px
+        }
+
+        .msg {
+            max-width: 80%;
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.78rem;
+            line-height: 1.4;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.4s ease, transform 0.4s ease
+        }
+
+        .msg.show {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .msg-in {
+            background: #202c33;
+            color: #e9edef;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px
+        }
+
+        .msg-out {
+            background: #005c4b;
+            color: #e9edef;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px
+        }
+
+        .msg-typing {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            padding: 8px 12px;
+            background: #202c33;
+            border-radius: 8px;
+            width: fit-content;
+            opacity: 0;
+            transition: opacity 0.3s
+        }
+
+        .msg-typing.show {
+            opacity: 1
+        }
+
+        .typing-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #8696a0;
+            animation: typing 1.2s infinite
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s
+        }
+
+        @keyframes typing {
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0)
+            }
+
+            30% {
+                transform: translateY(-4px)
+            }
+        }
+
+        .phone-footer {
+            background: #1f2c34;
+            padding: 10px 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .phone-input {
+            flex: 1;
+            background: #2a3942;
+            border: none;
+            border-radius: 20px;
+            padding: 8px 14px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.75rem;
+            color: #e9edef;
+            outline: none
+        }
+
+        .wa-label {
+            position: absolute;
+            top: -20px;
+            right: 0;
+            background: var(--wa-green);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-family: 'Syne', sans-serif
+        }
+
+        /* SERVICES */
+        .services {
+            padding: 80px 5%;
+            background: var(--white)
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem
+        }
+
+        .service-card {
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+            transform-origin: left
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px)
+        }
+
+        .service-card.wa::before {
+            background: var(--wa-green)
+        }
+
+        .service-card.wa:hover {
+            border-color: var(--wa-green)
+        }
+
+        .service-card.ig::before {
+            background: #e1306c
+        }
+
+        .service-card.ig:hover {
+            border-color: #e1306c
+        }
+
+        .service-card.em::before {
+            background: var(--accent)
+        }
+
+        .service-card.em:hover {
+            border-color: var(--accent)
+        }
+
+        .s-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem
+        }
+
+        .s-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem
+        }
+
+        .s-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1rem
+        }
+
+        .s-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem
+        }
+
+        .s-tag {
+            font-size: 0.72rem;
+            background: var(--light-gray);
+            color: var(--text-muted);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-weight: 500
+        }
+
+        /* PRICING */
+        .pricing {
+            padding: 80px 5%;
+            background: var(--off-white)
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+            align-items: start
+        }
+
+        .price-card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: all 0.3s
+        }
+
+        .price-card.featured {
+            background: var(--text-dark);
+            color: var(--white);
+            border-color: var(--text-dark);
+            transform: scale(1.04)
+        }
+
+        .price-badge {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            background: var(--green-light);
+            color: var(--green-dark);
+            padding: 0.3rem 0.7rem;
+            border-radius: 999px;
+            width: fit-content;
+            margin-bottom: 1rem
+        }
+
+        .price-badge.dark {
+            background: #333;
+            color: #ccc
+        }
+
+        .price-plan {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem
+        }
+
+        .price-desc {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.5
+        }
+
+        .price-desc.dark {
+            color: #aaa
+        }
+
+        .price-amount {
+            font-family: 'Syne', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 0.2rem
+        }
+
+        .price-per {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem
+        }
+
+        .price-per.dark {
+            color: #999
+        }
+
+        .price-divider {
+            height: 1px;
+            background: var(--border);
+            margin: 1.5rem 0
+        }
+
+        .price-divider.dark {
+            background: #333
+        }
+
+        .price-features {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            margin-bottom: 1.8rem
+        }
+
+        .pf {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            font-size: 0.84rem;
+            line-height: 1.4
+        }
+
+        .pf-check {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--green-light);
+            color: var(--green-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+            margin-top: 1px
+        }
+
+        .pf-check.wh {
+            background: #1a3a1a;
+            color: #4ade80
+        }
+
+        .btn-plan {
+            width: 100%;
+            padding: 0.85rem;
+            border-radius: 10px;
+            border: 1.5px solid var(--border);
+            background: transparent;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: var(--text-dark)
+        }
+
+        .btn-plan:hover {
+            background: var(--text-dark);
+            color: var(--white);
+            border-color: var(--text-dark)
+        }
+
+        .btn-plan.inv {
+            background: var(--white);
+            color: var(--text-dark);
+            border-color: var(--white)
+        }
+
+        .btn-plan.inv:hover {
+            background: #e5e5e5
+        }
+
+        /* PROCESS */
+        .process {
+            padding: 80px 5%;
+            background: var(--off-white)
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            margin-top: 3rem;
+            position: relative
+        }
+
+        .process-steps::before {
+            content: '';
+            position: absolute;
+            top: 28px;
+            left: calc(12.5% + 20px);
+            right: calc(12.5% + 20px);
+            height: 1px;
+            background: var(--border);
+            z-index: 0
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+            z-index: 1
+        }
+
+        .step-num {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1rem
+        }
+
+        .step-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem
+        }
+
+        .step-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5
+        }
+
+        /* CTA */
+        .cta-section {
+            padding: 80px 5%;
+            background: var(--text-dark);
+            color: var(--white);
+            text-align: center
+        }
+
+        .cta-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 1rem
+        }
+
+        .cta-sub {
+            color: #999;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-weight: 300
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .btn-wa {
+            background: var(--wa-green);
+            color: white;
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem
+        }
+
+        .btn-wa:hover {
+            background: #1db954
+        }
+
+        /* FOOTER */
+        footer {
+            background: #0d0d0c;
+            color: #666;
+            padding: 2.5rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.82rem;
+            flex-wrap: wrap;
+            gap: 1rem
+        }
+
+        .footer-brand {
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            color: #999
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1024px) {
+
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-steps {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+
+            .process-steps::before {
+                display: none;
+            }
+
+            .hero-bg {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.05;
+            }
+
+            .hero-graphics {
+                right: 0;
+                transform: translateY(-50%) scale(0.7);
+                opacity: 0.2;
+                z-index: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-graphics {
+                display: none;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 120px 5% 80px;
+                text-align: center;
+            }
+
+            .hero-content {
+                margin: 0 auto;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 1.5rem;
+            }
+
+            .wa-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .price-card.featured {
+                transform: scale(1);
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .cta-btns {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cta-btns button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAV -->
+    <nav>
+        <div class="nav-brand">Arsu<span>AI</span></div>
+        <div class="nav-links">
+            <a href="#services">Services</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#process">How It Works</a>
+            <a href="#contact" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+
+        <div class="hero-graphics">
+            <div class="hg-lines">
+                <svg viewBox="0 0 400 400">
+                    <circle cx="200" cy="200" r="160" stroke="currentColor" stroke-width="1.5" stroke-dasharray="6 6"
+                        fill="none" opacity="0.5" />
+                    <line x1="200" y1="200" x2="360" y2="200" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="329" y2="294" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="249" y2="352" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="151" y2="352" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="71" y2="294" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="40" y2="200" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="71" y2="106" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="151" y2="48" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="249" y2="48" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                    <line x1="200" y1="200" x2="329" y2="106" stroke="currentColor" stroke-width="1.5"
+                        stroke-dasharray="4 4" />
+                </svg>
+            </div>
+            <div class="hg-center">⚡</div>
+            <div class="hg-icon hg-wa" style="top:50%; left:90%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="28" alt="WA"></div>
+            <div class="hg-icon hg-meta" style="top:73.5%; left:82.3%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg" width="32"
+                    alt="Meta"></div>
+            <div class="hg-icon hg-gads" style="top:88%; left:62.3%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Google_Ads_logo.svg" width="28" alt="GAds">
+            </div>
+            <div class="hg-icon hg-gpt" style="top:88%; left:37.7%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" width="28" alt="GPT">
+            </div>
+            <div class="hg-icon hg-yt" style="top:73.5%; left:17.7%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg"
+                    width="32" alt="YT"></div>
+            <div class="hg-icon hg-fb" style="top:50%; left:10%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/b/b8/2021_Facebook_icon.svg" width="28"
+                    alt="FB"></div>
+            <div class="hg-icon hg-n8n" style="top:26.5%; left:17.7%;"><span
+                    style="font-size:1.1rem; font-weight:800; color:#ea4335">n8n</span></div>
+            <div class="hg-icon hg-ig" style="top:12%; left:37.7%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="28"
+                    alt="IG"></div>
+            <div class="hg-icon hg-ai" style="top:12%; left:62.3%;">📞</div>
+            <div class="hg-icon hg-em" style="top:26.5%; left:82.3%;"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" width="28"
+                    alt="Gmail"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                AI Automation Agency — India
+            </div>
+            <h1>Automate Your <span class="highlight">Business</span><br>Grow on Autopilot</h1>
+            <p class="hero-sub">We build intelligent automation systems for Indian businesses — WhatsApp AI agents,
+                email workflows, Instagram management, and lead generation that work 24/7 while you sleep.</p>
+            <div class="hero-btns">
+                <button class="btn-primary"
+                    onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See Our
+                    Services</button>
+                <button class="btn-sec"
+                    onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Book a Free Call
+                    →</button>
+            </div>
+            <div class="hero-stats">
+                <div>
+                    <div class="stat-num">50+</div>
+                    <div class="stat-label">Automations Built</div>
+                </div>
+                <div>
+                    <div class="stat-num">3x</div>
+                    <div class="stat-label">Avg Lead Response Speed</div>
+                </div>
+                <div>
+                    <div class="stat-num">24/7</div>
+                    <div class="stat-label">Always On</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHATSAPP AUTOMATION -->
+    <section class="wa-section" id="services">
+        <div class="section-label">WhatsApp Automation</div>
+        <div class="section-title">Your Business on WhatsApp,<br>Fully Automated</div>
+        <p class="section-sub">India's #1 messaging platform, now powered by AI that responds, qualifies, and converts —
+            automatically.</p>
+
+        <div class="wa-grid">
+            <div class="wa-features">
+                <div class="wa-feature fade-up">
+                    <div class="wa-icon">📩</div>
+                    <div>
+                        <div class="wa-feat-title">Manage Incoming Messages</div>
+                        <div class="wa-feat-desc">AI reads and responds to every customer query instantly. No missed
+                            messages, no delays.</div>
+                    </div>
+                </div>
+                <div class="wa-feature fade-up">
+                    <div class="wa-icon">🎯</div>
+                    <div>
+                        <div class="wa-feat-title">Lead Follow-up from Ads</div>
+                        <div class="wa-feat-desc">When a lead comes from Meta Ads, our AI instantly messages them,
+                            qualifies them, and books a call.</div>
+                    </div>
+                </div>
+                <div class="wa-feature fade-up">
+                    <div class="wa-icon">🛒</div>
+                    <div>
+                        <div class="wa-feat-title">Sell Products Online</div>
+                        <div class="wa-feat-desc">Turn WhatsApp into a full sales channel — showcase products, handle
+                            orders, process payments.</div>
+                    </div>
+                </div>
+                <div class="wa-feature fade-up">
+                    <div class="wa-icon">🔗</div>
+                    <div>
+                        <div class="wa-feat-title">Unified Inbox — All Platforms</div>
+                        <div class="wa-feat-desc">Connect Instagram, Facebook, and WhatsApp into one smart inbox. One
+                            AI, all channels.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phone-wrap">
+                <span class="wa-label">LIVE DEMO</span>
+                <div class="phone">
+                    <div class="phone-header">
+                        <div class="phone-avatar">AF</div>
+                        <div>
+                            <div class="phone-name">ArsuAI Bot</div>
+                            <div class="phone-status">online</div>
+                        </div>
+                    </div>
+                    <div class="phone-body">
+                        <div class="chat-bg"></div>
+                        <div class="msg msg-in" id="m1">Hi! I saw your ad about solar panels. Interested to know more 🙏
+                        </div>
+                        <div class="msg-typing" id="t1">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                        <div class="msg msg-out" id="m2">Namaste! 🙏 Thanks for reaching out. I'm ArsuAI, your AI
+                            assistant. Can I ask — is this for your home or business?</div>
+                        <div class="msg msg-in" id="m3">Home, 3BHK in Patna</div>
+                        <div class="msg-typing" id="t2">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                        <div class="msg msg-out" id="m4">Perfect! For a 3BHK you'd need a 3–5kW system. Our team can do
+                            a FREE site visit 📍 Would morning or evening work for you?</div>
+                        <div class="msg msg-in" id="m5">Morning works!</div>
+                        <div class="msg-typing" id="t3">
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                            <div class="typing-dot"></div>
+                        </div>
+                        <div class="msg msg-out" id="m6">✅ Booked! Our engineer will visit tomorrow 10 AM. You'll get a
+                            WhatsApp reminder tonight. Hot lead saved to your dashboard! 🔥</div>
+                    </div>
+                    <div class="phone-footer">
+                        <input class="phone-input" placeholder="Type a message..." readonly>
+                        <div style="color:#8696a0;font-size:1.2rem">➤</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES GRID -->
+    <section class="services" id="more-services">
+        <div class="section-label">All Services</div>
+        <div class="section-title">Everything You Need,<br>Automated</div>
+        <div class="services-grid">
+            <a href="whatsapp-automation.html" class="service-card wa fade-up"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="s-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+                        width="36" alt="WhatsApp"></div>
+                <div class="s-title">WhatsApp Automation</div>
+                <div class="s-desc">Full WhatsApp Business API setup with AI agents for lead capture, follow-ups, sales,
+                    and customer support.</div>
+                <div class="s-tags">
+                    <span class="s-tag">Lead Qualification</span>
+                    <span class="s-tag">Auto-Reply</span>
+                    <span class="s-tag">Broadcast</span>
+                    <span class="s-tag">Order Management</span>
+                </div>
+            </a>
+            <a href="instagram-management.html" class="service-card ig fade-up"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="s-icon"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" width="36"
+                        alt="Instagram"></div>
+                <div class="s-title">Instagram Management</div>
+                <div class="s-desc">Auto-respond to DMs and comments, capture leads from Instagram ads, schedule posts,
+                    and manage your brand presence 24/7.</div>
+                <div class="s-tags">
+                    <span class="s-tag">DM Automation</span>
+                    <span class="s-tag">Comment Reply</span>
+                    <span class="s-tag">Ad Lead Capture</span>
+                    <span class="s-tag">Unified Inbox</span>
+                </div>
+            </a>
+            <a href="email-automation.html" class="service-card em fade-up"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="s-icon"><img
+                        src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" width="36"
+                        alt="Gmail"></div>
+                <div class="s-title">Email Automation</div>
+                <div class="s-desc">Cold outreach campaigns, inbound reply handling, lead nurturing sequences, and CRM
+                    sync — fully automated.</div>
+                <div class="s-tags">
+                    <span class="s-tag">Cold Outreach</span>
+                    <span class="s-tag">Reply Handling</span>
+                    <span class="s-tag">Drip Sequences</span>
+                    <span class="s-tag">CRM Sync</span>
+                </div>
+            </a>
+            <a href="ai-call-agent.html" class="service-card fade-up"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="s-icon">📞</div>
+                <div class="s-title">AI Call Agent</div>
+                <div class="s-desc">Voice AI agents that call leads, handle inbound calls, qualify prospects, and speak
+                    natural Hindi/English — built on Exotel.</div>
+                <div class="s-tags">
+                    <span class="s-tag">Inbound Calls</span>
+                    <span class="s-tag">Outbound Dialer</span>
+                    <span class="s-tag">Hindi Support</span>
+                    <span class="s-tag">Lead Scoring</span>
+                </div>
+            </a>
+            <a href="workflow-automation.html" class="service-card fade-up"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="s-icon">🔄</div>
+                <div class="s-title">Workflow Automation</div>
+                <div class="s-desc">Connect your tools — CRM, sheets, WhatsApp, email — into smart n8n workflows that
+                    eliminate manual work.</div>
+                <div class="s-tags">
+                    <span class="s-tag">n8n Workflows</span>
+                    <span class="s-tag">CRM Integration</span>
+                    <span class="s-tag">API Connections</span>
+                    <span class="s-tag">Reporting</span>
+                </div>
+            </a>
+            <a href="lead-generation.html" class="service-card fade-up"
+                style="text-decoration: none; color: inherit; display: block;">
+                <div class="s-icon">🎯</div>
+                <div class="s-title">Lead Generation</div>
+                <div class="s-desc">End-to-end lead gen — from Meta Ads to WhatsApp follow-up, AI classification
+                    (HOT/WARM/COLD), and auto-booking.</div>
+                <div class="s-tags">
+                    <span class="s-tag">Meta Ads Integration</span>
+                    <span class="s-tag">AI Classification</span>
+                    <span class="s-tag">Auto Booking</span>
+                    <span class="s-tag">Dashboard</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="process" id="process">
+        <div class="section-label">How It Works</div>
+        <div class="section-title">From Idea to Automation<br>in 4 Steps</div>
+        <div class="process-steps">
+            <div class="step fade-up">
+                <div class="step-num">01</div>
+                <div class="step-title">Discovery Call</div>
+                <div class="step-desc">We understand your business, bottlenecks, and goals. 30-minute free consultation.
+                </div>
+            </div>
+            <div class="step fade-up">
+                <div class="step-num">02</div>
+                <div class="step-title">Custom Plan</div>
+                <div class="step-desc">We design an automation blueprint tailored to your business flow and budget.
+                </div>
+            </div>
+            <div class="step fade-up">
+                <div class="step-num">03</div>
+                <div class="step-title">Build & Test</div>
+                <div class="step-desc">We build, test, and refine your automation — you see it working before we launch.
+                </div>
+            </div>
+            <div class="step fade-up">
+                <div class="step-num">04</div>
+                <div class="step-title">Go Live</div>
+                <div class="step-desc">We launch and monitor. Ongoing support to keep your automation running smoothly.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing" id="pricing">
+        <div class="section-label">Pricing</div>
+        <div class="section-title">Simple, Transparent Plans</div>
+        <div class="pricing-grid">
+            <!-- STARTER -->
+            <div class="price-card fade-up">
+                <div class="price-badge">Starter</div>
+                <div class="price-plan">Starter Setup</div>
+                <div class="price-desc">Perfect for small businesses wanting to test automation without big commitment.
+                </div>
+                <div class="price-amount">₹14,999</div>
+                <div class="price-per">one-time setup + ₹2,999/month</div>
+                <div class="price-divider"></div>
+                <div class="price-features">
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>WhatsApp AI Auto-Reply</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>1 Platform Integration</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Lead Capture from 1 Ad Source</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Basic Dashboard Access</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Email Support</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Up to 500 conversations/month</span>
+                    </div>
+                </div>
+                <button class="btn-plan">Get Started →</button>
+            </div>
+
+            <!-- AS WE GO -->
+            <div class="price-card featured fade-up">
+                <div class="price-badge dark">Most Popular</div>
+                <div class="price-plan">As We Go</div>
+                <div class="price-desc dark">Flexible plan — pay per automation built. Ideal for growing businesses
+                    scaling at their pace.</div>
+                <div class="price-amount">₹21,999</div>
+                <div class="price-per dark">per automation module</div>
+                <div class="price-divider dark"></div>
+                <div class="price-features">
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>Choose any automation modules</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>WhatsApp + Instagram + Email</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>Multi-platform Unified Inbox</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>AI Lead Classification</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>n8n Workflow Builds</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>Priority WhatsApp Support</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check wh">✓</div><span>Up to 1000 conversations/month </span>
+                    </div>
+                </div>
+                <button class="btn-plan inv">Start Building →</button>
+            </div>
+
+            <!-- ENTERPRISE -->
+            <div class="price-card fade-up">
+                <div class="price-badge">Enterprise</div>
+                <div class="price-plan">Enterprise</div>
+                <div class="price-desc">Full business automation implementation. Everything built, deployed, and managed
+                    for you.</div>
+                <div class="price-amount">Custom</div>
+                <div class="price-per">based on business scope</div>
+                <div class="price-divider"></div>
+                <div class="price-features">
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Complete Automation Audit</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>All Channels — WhatsApp, IG, Email, Calls</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Custom AI Voice Agent (Hindi/English)</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>CRM + ERP Integrations</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>Dedicated Account Manager</span>
+                    </div>
+                    <div class="pf">
+                        <div class="pf-check">✓</div><span>SLA-backed Uptime</span>
+                    </div>
+                       <div class="pf">
+                        <div class="pf-check">✓</div><span>more than 1000+ conversations/month</span>
+                    </div>
+                </div>
+                <button class="btn-plan">Request a Proposal →</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Automate<br>Your Business?</h2>
+        <p class="cta-sub">Book a free 30-minute call. We'll show you exactly what automation can do for your business —
+            no fluff, just results.</p>
+        <div class="cta-btns">
+            <a href="https://wa.me/919471435386" class="btn-wa" target="_blank" style="text-decoration:none;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
+                    <path
+                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                    <path
+                        d="M12 0C5.373 0 0 5.373 0 12c0 2.122.555 4.117 1.524 5.847L.057 23.997l6.304-1.652C8.011 23.367 9.961 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894c-1.893 0-3.648-.555-5.117-1.508l-.367-.218-3.742.981.999-3.65-.239-.374C2.534 15.61 2.106 13.86 2.106 12c0-5.46 4.444-9.894 9.894-9.894 5.46 0 9.894 4.434 9.894 9.894 0 5.46-4.434 9.894-9.894 9.894z" />
+                </svg>
+                Chat on WhatsApp
+            </a>
+            <a href="mailto:r89252587@gmail.com" class="btn-sec"
+                style="border-color:#444;color:#ccc;text-decoration:none;">Email Us →</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-brand">ArsuAI</div>
+        <div>
+            AI Automation Agency · Patna, Bihar · India<br>
+            <a href="tel:+919471435386" style="color:#999;text-decoration:none;">+91 94714 35386</a> | <a
+                href="mailto:r89252587@gmail.com" style="color:#999;text-decoration:none;">r89252587@gmail.com</a>
+        </div>
+        <div>© 2025 ArsuAI. All rights reserved.</div>
+    </footer>
+
+    <script>
+        // Chat animation
+        const seq = [
+            { id: 'm1', delay: 600 },
+            { id: 't1', delay: 1200, isTyping: true },
+            { id: 't1', delay: 2200, hide: true },
+            { id: 'm2', delay: 2400 },
+            { id: 'm3', delay: 3600 },
+            { id: 't2', delay: 4200, isTyping: true },
+            { id: 't2', delay: 5400, hide: true },
+            { id: 'm4', delay: 5600 },
+            { id: 'm5', delay: 7000 },
+            { id: 't3', delay: 7600, isTyping: true },
+            { id: 't3', delay: 8800, hide: true },
+            { id: 'm6', delay: 9000 },
+        ];
+
+        function runAnim() {
+            document.querySelectorAll('.msg').forEach(el => el.classList.remove('show'));
+            document.querySelectorAll('.msg-typing').forEach(el => el.classList.remove('show'));
+            seq.forEach(s => {
+                setTimeout(() => {
+                    const el = document.getElementById(s.id);
+                    if (!el) return;
+                    if (s.hide) { el.classList.remove('show'); return; }
+                    el.classList.add('show');
+                }, s.delay);
+            });
+        }
+        runAnim();
+        setInterval(runAnim, 14000);
+
+        // Scroll animations
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((e, i) => {
+                if (e.isIntersecting) {
+                    setTimeout(() => e.target.classList.add('visible'), i * 80);
+                    obs.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    </script>
+</body>
+
+</html>
