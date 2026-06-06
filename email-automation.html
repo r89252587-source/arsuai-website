@@ -1,270 +1,1020 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Email Automation — ArsuAI</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --white:#ffffff;
-  --off-white:#f8f8f6;
-  --light-gray:#f0efeb;
-  --border:#e5e4e0;
-  --text-dark:#111110;
-  --text-muted:#6b6a66;
-  --text-light:#9b9a96;
-  --green:#22c55e;
-  --green-light:#dcfce7;
-  --green-dark:#15803d;
-  --wa-green:#25d366;
-  --wa-dark:#128c7e;
-  --brand-color: #0ea5e9;
-  --brand-light: #e0f2fe;
-}
-body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text-dark);overflow-x:hidden;line-height:1.6}
-h1,h2,h3,h4,.brand{font-family:'Syne',sans-serif}
+<<<<<<< HEAD <!DOCTYPE html>
+  <html lang="en">
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 5%;height:64px;display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;letter-spacing:-0.02em;text-decoration:none;color:var(--text-dark);}
-.nav-brand span{color:var(--wa-dark)}
-.nav-links{display:flex;gap:2rem;align-items:center}
-.nav-links a{text-decoration:none;color:var(--text-muted);font-size:0.9rem;font-weight:500;transition:color 0.2s}
-.nav-links a:hover{color:var(--text-dark)}
-.nav-cta{background:var(--text-dark);color:var(--white)!important;padding:0.5rem 1.2rem;border-radius:8px;font-weight:500!important;font-size:0.85rem!important}
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Automation — ArsuAI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
 
-/* INNER HERO */
-.inner-hero {
-  padding: 140px 5% 80px;
-  background: linear-gradient(135deg, var(--brand-light) 0%, var(--off-white) 100%);
-  text-align: center;
-  position: relative;
-}
-.inner-hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.2rem;
-  color: var(--text-dark);
-}
-.inner-hero h1 span {
-  color: var(--brand-color);
-}
-.inner-hero p {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto 2rem;
-  line-height: 1.7;
-}
+      :root {
+        --white: #ffffff;
+        --off-white: #f8f8f6;
+        --light-gray: #f0efeb;
+        --border: #e5e4e0;
+        --text-dark: #111110;
+        --text-muted: #6b6a66;
+        --text-light: #9b9a96;
+        --green: #22c55e;
+        --green-light: #dcfce7;
+        --green-dark: #15803d;
+        --wa-green: #25d366;
+        --wa-dark: #128c7e;
+        --brand-color: #0ea5e9;
+        --brand-light: #e0f2fe;
+      }
 
-/* CONTENT SECTIONS */
-.section-pad { padding: 100px 5%; }
-.section-header { text-align: center; margin-bottom: 4rem; }
-.section-label { font-size: 0.85rem; font-weight: 700; color: var(--brand-color); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem; }
-.section-title { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; letter-spacing: -0.02em; }
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: var(--white);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        line-height: 1.6
+      }
 
-/* SERVICES OFFERED */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-.service-box {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 2.5rem 2rem;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-.service-box:hover {
-  border-color: var(--brand-color);
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-.service-box .icon {
-  width: 56px;
-  height: 56px;
-  background: var(--brand-light);
-  color: var(--brand-color);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-.service-box h3 {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-}
-.service-box p {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-}
+      h1,
+      h2,
+      h3,
+      h4,
+      .brand {
+        font-family: 'Syne', sans-serif
+      }
 
-/* CTA */
-.cta-section{padding:80px 5%;background:var(--text-dark);color:var(--white);text-align:center}
-.cta-section h2{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem}
-.cta-sub{color:#999;font-size:1rem;margin-bottom:2rem;font-weight:300}
-.btn-wa{background:var(--brand-color);color:white;padding:0.85rem 2rem;border-radius:10px;border:none;font-family:'DM Sans',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;text-decoration:none;transition:opacity 0.2s}
-.btn-wa:hover{opacity:0.9}
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 5%;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+      }
 
-/* FOOTER */
-footer{background:#0d0d0c;color:#666;padding:2.5rem 5%;display:flex;align-items:center;justify-content:space-between;font-size:0.82rem;flex-wrap:wrap;gap:1rem}
-.footer-brand{font-family:'Syne',sans-serif;font-weight:800;color:#999}
+      .nav-brand {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        color: var(--text-dark);
+      }
 
-/* RESPONSIVE DESIGN */
-@media (max-width: 1024px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .services-grid { grid-template-columns: 1fr; }
-  footer { flex-direction: column; text-align: center; justify-content: center; }
-}
+      .nav-brand span {
+        color: var(--wa-dark)
+      }
 
-/* DEMO STYLES */
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center
+      }
 
-.em-mockup { max-width: 600px; margin: 0 auto; background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-.em-header { background: #f9f9f9; padding: 15px 20px; border-bottom: 1px solid #ddd; font-weight: 600; display:flex; justify-content: space-between;}
-.em-body { padding: 20px; display:flex; flex-direction:column; gap:15px; }
-.em-row { padding: 15px; border: 1px solid #eee; border-radius: 8px; display:flex; gap:15px; opacity:0; transform:translateX(-20px); transition: all 0.5s; background:#fff;}
-.em-row.show { opacity:1; transform:translateX(0); }
-.em-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--brand-light); color: var(--brand-color); display:flex; align-items:center; justify-content:center; font-weight:bold;}
-.em-content h4 { font-size: 0.95rem; margin-bottom: 5px;}
-.em-content p { font-size: 0.85rem; color: #666;}
-.em-tag { display:inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight:bold; margin-top: 8px;}
-.tag-pos { background: #dcfce7; color: #15803d; }
-.tag-ooo { background: #fef08a; color: #854d0e; }
-.demo-section { text-align: center; max-width: 800px; margin: 0 auto; }
-        
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s
+      }
 
-</style>
-</head>
-<body>
+      .nav-links a:hover {
+        color: var(--text-dark)
+      }
 
-<nav>
-  <a href="index.html" class="nav-brand">Auto<span>Flow</span></a>
-  <div class="nav-links">
-    <a href="index.html#services">Services</a>
-    <a href="index.html#pricing">Pricing</a>
-    <a href="index.html#process">How It Works</a>
-    <a href="index.html#contact" class="nav-cta">Get Started</a>
-  </div>
-</nav>
+      .nav-cta {
+        background: var(--text-dark);
+        color: var(--white) !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500 !important;
+        font-size: 0.85rem !important
+      }
 
-<header class="inner-hero">
-  <h1><span>Email</span> Automation</h1>
-  <p>Cold outreach campaigns, inbound reply handling, lead nurturing sequences, and CRM sync — fully automated.</p>
-  <a href="#demo" class="btn-wa" style="margin-top: 1rem;">See Live Demo ↓</a>
-</header>
+      /* INNER HERO */
+      .inner-hero {
+        padding: 140px 5% 80px;
+        background: linear-gradient(135deg, var(--brand-light) 0%, var(--off-white) 100%);
+        text-align: center;
+        position: relative;
+      }
 
-<section class="section-pad">
-  <div class="section-header">
-    <div class="section-label">Features</div>
-    <h2 class="section-title">What We Build For You</h2>
-  </div>
-  <div class="services-grid">
-    
-    <div class="service-box">
-      <div class="icon">📤</div>
-      <h3>Cold Outreach</h3>
-      <p>Automate personalized cold emails at scale without landing in spam.</p>
-    </div>
-    <div class="service-box">
-      <div class="icon">🤖</div>
-      <h3>Reply Handling</h3>
-      <p>AI reads replies, categorizes them (Positive, OOO, Not Interested), and responds accordingly.</p>
-    </div>
-    <div class="service-box">
-      <div class="icon">💧</div>
-      <h3>Drip Sequences</h3>
-      <p>Nurture your leads with timed sequences that provide value and drive conversions.</p>
-    </div>
-    <div class="service-box">
-      <div class="icon">🔄</div>
-      <h3>CRM Sync</h3>
-      <p>Automatically update your CRM records when a lead opens, clicks, or replies to your emails.</p>
-    </div>
-  </div>
-</section>
+      .inner-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.2rem;
+        color: var(--text-dark);
+      }
 
-<section class="section-pad" id="demo" style="background:var(--off-white)">
-  
-  <div class="demo-section">
-    <div class="section-label">Live Demo</div>
-    <h3 class="section-title" style="margin-bottom:1rem; font-size:2.2rem;">AI Inbox Manager</h3>
-    <p style="color:var(--text-muted); margin-bottom:2.5rem;">Our AI reads incoming replies, tags them intelligently, and syncs to your CRM instantly.</p>
-    
-    <div class="em-mockup">
-      <div class="em-header">
-        <div>Inbox</div>
-        <div style="color:var(--brand-color)">AI Active ✨</div>
+      .inner-hero h1 span {
+        color: var(--brand-color);
+      }
+
+      .inner-hero p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        line-height: 1.7;
+      }
+
+      /* CONTENT SECTIONS */
+      .section-pad {
+        padding: 100px 5%;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--brand-color);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      /* SERVICES OFFERED */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-box {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-box:hover {
+        border-color: var(--brand-color);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .service-box .icon {
+        width: 56px;
+        height: 56px;
+        background: var(--brand-light);
+        color: var(--brand-color);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-box h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .service-box p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* CTA */
+      .cta-section {
+        padding: 80px 5%;
+        background: var(--text-dark);
+        color: var(--white);
+        text-align: center
+      }
+
+      .cta-section h2 {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem
+      }
+
+      .cta-sub {
+        color: #999;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        font-weight: 300
+      }
+
+      .btn-wa {
+        background: var(--brand-color);
+        color: white;
+        padding: 0.85rem 2rem;
+        border-radius: 10px;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        transition: opacity 0.2s
+      }
+
+      .btn-wa:hover {
+        opacity: 0.9
+      }
+
+      /* FOOTER */
+      footer {
+        background: #0d0d0c;
+        color: #666;
+        padding: 2.5rem 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.82rem;
+        flex-wrap: wrap;
+        gap: 1rem
+      }
+
+      .footer-brand {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        color: #999
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+        }
+      }
+
+      /* DEMO STYLES */
+
+      .em-mockup {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .em-header {
+        background: #f9f9f9;
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .em-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .em-row {
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        display: flex;
+        gap: 15px;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s;
+        background: #fff;
+      }
+
+      .em-row.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .em-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--brand-light);
+        color: var(--brand-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .em-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+      }
+
+      .em-content p {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .em-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      .tag-pos {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      .tag-ooo {
+        background: #fef08a;
+        color: #854d0e;
+      }
+
+      .demo-section {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav>
+      <a href="index.html" class="nav-brand">Auto<span>Flow</span></a>
+      <div class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#process">How It Works</a>
+        <a href="index.html#contact" class="nav-cta">Get Started</a>
       </div>
-      <div class="em-body">
-        <div class="em-row" id="e1">
-          <div class="em-avatar">S</div>
-          <div class="em-content" style="text-align:left;">
-            <h4>Sarah Jenkins</h4>
-            <p>"Yes, I'd love to learn more about your services. Can we speak next Tuesday?"</p>
-            <span class="em-tag tag-pos">HOT LEAD</span>
-            <span class="em-tag" style="background:#e0f2fe; color:#0369a1;">Syncing to CRM...</span>
+    </nav>
+
+    <header class="inner-hero">
+      <h1><span>Email</span> Automation</h1>
+      <p>Cold outreach campaigns, inbound reply handling, lead nurturing sequences, and CRM sync — fully automated.</p>
+      <a href="#demo" class="btn-wa" style="margin-top: 1rem;">See Live Demo ↓</a>
+    </header>
+
+    <section class="section-pad">
+      <div class="section-header">
+        <div class="section-label">Features</div>
+        <h2 class="section-title">What We Build For You</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-box">
+          <div class="icon">📤</div>
+          <h3>Cold Outreach</h3>
+          <p>Automate personalized cold emails at scale without landing in spam.</p>
+        </div>
+        <div class="service-box">
+          <div class="icon">🤖</div>
+          <h3>Reply Handling</h3>
+          <p>AI reads replies, categorizes them (Positive, OOO, Not Interested), and responds accordingly.</p>
+        </div>
+        <div class="service-box">
+          <div class="icon">💧</div>
+          <h3>Drip Sequences</h3>
+          <p>Nurture your leads with timed sequences that provide value and drive conversions.</p>
+        </div>
+        <div class="service-box">
+          <div class="icon">🔄</div>
+          <h3>CRM Sync</h3>
+          <p>Automatically update your CRM records when a lead opens, clicks, or replies to your emails.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="demo" style="background:var(--off-white)">
+
+      <div class="demo-section">
+        <div class="section-label">Live Demo</div>
+        <h3 class="section-title" style="margin-bottom:1rem; font-size:2.2rem;">AI Inbox Manager</h3>
+        <p style="color:var(--text-muted); margin-bottom:2.5rem;">Our AI reads incoming replies, tags them
+          intelligently, and syncs to your CRM instantly.</p>
+
+        <div class="em-mockup">
+          <div class="em-header">
+            <div>Inbox</div>
+            <div style="color:var(--brand-color)">AI Active ✨</div>
+          </div>
+          <div class="em-body">
+            <div class="em-row" id="e1">
+              <div class="em-avatar">S</div>
+              <div class="em-content" style="text-align:left;">
+                <h4>Sarah Jenkins</h4>
+                <p>"Yes, I'd love to learn more about your services. Can we speak next Tuesday?"</p>
+                <span class="em-tag tag-pos">HOT LEAD</span>
+                <span class="em-tag" style="background:#e0f2fe; color:#0369a1;">Syncing to CRM...</span>
+              </div>
+            </div>
+            <div class="em-row" id="e2">
+              <div class="em-avatar">M</div>
+              <div class="em-content" style="text-align:left;">
+                <h4>Michael Scott</h4>
+                <p>"I am currently out of the office until the 15th."</p>
+                <span class="em-tag tag-ooo">OUT OF OFFICE</span>
+                <span class="em-tag" style="background:#f3f4f6; color:#374151;">Rescheduling...</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="em-row" id="e2">
-          <div class="em-avatar">M</div>
-          <div class="em-content" style="text-align:left;">
-            <h4>Michael Scott</h4>
-            <p>"I am currently out of the office until the 15th."</p>
-            <span class="em-tag tag-ooo">OUT OF OFFICE</span>
-            <span class="em-tag" style="background:#f3f4f6; color:#374151;">Rescheduling...</span>
+      </div>
+
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Scale Automatically?</h2>
+      <p class="cta-sub">Stop doing manual work. Let AI handle the heavy lifting.</p>
+      <a href="index.html#contact" class="btn-wa">
+        Book a Strategy Call
+      </a>
+    </section>
+
+    <footer>
+      <div class="footer-brand">ArsuAI</div>
+      <div>AI Automation Agency · Patna, Bihar · India</div>
+      <div>© 2025 ArsuAI. All rights reserved.</div>
+    </footer>
+
+    <script>
+
+      const seq = [
+        { id: 'e1', delay: 500 },
+        { id: 'e2', delay: 1500 },
+      ];
+      function runAnim() {
+        document.querySelectorAll('.em-row').forEach(el => el.classList.remove('show'));
+        seq.forEach(s => {
+          setTimeout(() => {
+            const el = document.getElementById(s.id);
+            if (el) el.classList.add('show');
+          }, s.delay);
+        });
+      }
+      runAnim();
+      setInterval(runAnim, 5000);
+
+    </script>
+  </body>
+
+  </html>
+  =======
+  <!DOCTYPE html>
+  <html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Automation — ArsuAI</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box
+      }
+
+      :root {
+        --white: #ffffff;
+        --off-white: #f8f8f6;
+        --light-gray: #f0efeb;
+        --border: #e5e4e0;
+        --text-dark: #111110;
+        --text-muted: #6b6a66;
+        --text-light: #9b9a96;
+        --green: #22c55e;
+        --green-light: #dcfce7;
+        --green-dark: #15803d;
+        --wa-green: #25d366;
+        --wa-dark: #128c7e;
+        --brand-color: #0ea5e9;
+        --brand-light: #e0f2fe;
+      }
+
+      body {
+        font-family: 'DM Sans', sans-serif;
+        background: var(--white);
+        color: var(--text-dark);
+        overflow-x: hidden;
+        line-height: 1.6
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      .brand {
+        font-family: 'Syne', sans-serif
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 5%;
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between
+      }
+
+      .nav-brand {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        font-size: 1.3rem;
+        letter-spacing: -0.02em;
+        text-decoration: none;
+        color: var(--text-dark);
+      }
+
+      .nav-brand span {
+        color: var(--wa-dark)
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: color 0.2s
+      }
+
+      .nav-links a:hover {
+        color: var(--text-dark)
+      }
+
+      .nav-cta {
+        background: var(--text-dark);
+        color: var(--white) !important;
+        padding: 0.5rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500 !important;
+        font-size: 0.85rem !important
+      }
+
+      /* INNER HERO */
+      .inner-hero {
+        padding: 140px 5% 80px;
+        background: linear-gradient(135deg, var(--brand-light) 0%, var(--off-white) 100%);
+        text-align: center;
+        position: relative;
+      }
+
+      .inner-hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.2rem;
+        color: var(--text-dark);
+      }
+
+      .inner-hero h1 span {
+        color: var(--brand-color);
+      }
+
+      .inner-hero p {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        max-width: 600px;
+        margin: 0 auto 2rem;
+        line-height: 1.7;
+      }
+
+      /* CONTENT SECTIONS */
+      .section-pad {
+        padding: 100px 5%;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .section-label {
+        font-size: 0.85rem;
+        font-weight: 700;
+        color: var(--brand-color);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      /* SERVICES OFFERED */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+      }
+
+      .service-box {
+        background: var(--white);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-box:hover {
+        border-color: var(--brand-color);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .service-box .icon {
+        width: 56px;
+        height: 56px;
+        background: var(--brand-light);
+        color: var(--brand-color);
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .service-box h3 {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .service-box p {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      /* CTA */
+      .cta-section {
+        padding: 80px 5%;
+        background: var(--text-dark);
+        color: var(--white);
+        text-align: center
+      }
+
+      .cta-section h2 {
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.03em;
+        margin-bottom: 1rem
+      }
+
+      .cta-sub {
+        color: #999;
+        font-size: 1rem;
+        margin-bottom: 2rem;
+        font-weight: 300
+      }
+
+      .btn-wa {
+        background: var(--brand-color);
+        color: white;
+        padding: 0.85rem 2rem;
+        border-radius: 10px;
+        border: none;
+        font-family: 'DM Sans', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+        transition: opacity 0.2s
+      }
+
+      .btn-wa:hover {
+        opacity: 0.9
+      }
+
+      /* FOOTER */
+      footer {
+        background: #0d0d0c;
+        color: #666;
+        padding: 2.5rem 5%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.82rem;
+        flex-wrap: wrap;
+        gap: 1rem
+      }
+
+      .footer-brand {
+        font-family: 'Syne', sans-serif;
+        font-weight: 800;
+        color: #999
+      }
+
+      /* RESPONSIVE DESIGN */
+      @media (max-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+
+        footer {
+          flex-direction: column;
+          text-align: center;
+          justify-content: center;
+        }
+      }
+
+      /* DEMO STYLES */
+
+      .em-mockup {
+        max-width: 600px;
+        margin: 0 auto;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      }
+
+      .em-header {
+        background: #f9f9f9;
+        padding: 15px 20px;
+        border-bottom: 1px solid #ddd;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .em-body {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .em-row {
+        padding: 15px;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        display: flex;
+        gap: 15px;
+        opacity: 0;
+        transform: translateX(-20px);
+        transition: all 0.5s;
+        background: #fff;
+      }
+
+      .em-row.show {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .em-avatar {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--brand-light);
+        color: var(--brand-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+      }
+
+      .em-content h4 {
+        font-size: 0.95rem;
+        margin-bottom: 5px;
+      }
+
+      .em-content p {
+        font-size: 0.85rem;
+        color: #666;
+      }
+
+      .em-tag {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-size: 0.7rem;
+        font-weight: bold;
+        margin-top: 8px;
+      }
+
+      .tag-pos {
+        background: #dcfce7;
+        color: #15803d;
+      }
+
+      .tag-ooo {
+        background: #fef08a;
+        color: #854d0e;
+      }
+
+      .demo-section {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <nav>
+      <a href="index.html" class="nav-brand">Auto<span>Flow</span></a>
+      <div class="nav-links">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#process">How It Works</a>
+        <a href="index.html#contact" class="nav-cta">Get Started</a>
+      </div>
+    </nav>
+
+    <header class="inner-hero">
+      <h1><span>Email</span> Automation</h1>
+      <p>Cold outreach campaigns, inbound reply handling, lead nurturing sequences, and CRM sync — fully automated.</p>
+      <a href="#demo" class="btn-wa" style="margin-top: 1rem;">See Live Demo ↓</a>
+    </header>
+
+    <section class="section-pad">
+      <div class="section-header">
+        <div class="section-label">Features</div>
+        <h2 class="section-title">What We Build For You</h2>
+      </div>
+      <div class="services-grid">
+
+        <div class="service-box">
+          <div class="icon">📤</div>
+          <h3>Cold Outreach</h3>
+          <p>Automate personalized cold emails at scale without landing in spam.</p>
+        </div>
+        <div class="service-box">
+          <div class="icon">🤖</div>
+          <h3>Reply Handling</h3>
+          <p>AI reads replies, categorizes them (Positive, OOO, Not Interested), and responds accordingly.</p>
+        </div>
+        <div class="service-box">
+          <div class="icon">💧</div>
+          <h3>Drip Sequences</h3>
+          <p>Nurture your leads with timed sequences that provide value and drive conversions.</p>
+        </div>
+        <div class="service-box">
+          <div class="icon">🔄</div>
+          <h3>CRM Sync</h3>
+          <p>Automatically update your CRM records when a lead opens, clicks, or replies to your emails.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-pad" id="demo" style="background:var(--off-white)">
+
+      <div class="demo-section">
+        <div class="section-label">Live Demo</div>
+        <h3 class="section-title" style="margin-bottom:1rem; font-size:2.2rem;">AI Inbox Manager</h3>
+        <p style="color:var(--text-muted); margin-bottom:2.5rem;">Our AI reads incoming replies, tags them
+          intelligently, and syncs to your CRM instantly.</p>
+
+        <div class="em-mockup">
+          <div class="em-header">
+            <div>Inbox</div>
+            <div style="color:var(--brand-color)">AI Active ✨</div>
+          </div>
+          <div class="em-body">
+            <div class="em-row" id="e1">
+              <div class="em-avatar">S</div>
+              <div class="em-content" style="text-align:left;">
+                <h4>Sarah Jenkins</h4>
+                <p>"Yes, I'd love to learn more about your services. Can we speak next Tuesday?"</p>
+                <span class="em-tag tag-pos">HOT LEAD</span>
+                <span class="em-tag" style="background:#e0f2fe; color:#0369a1;">Syncing to CRM...</span>
+              </div>
+            </div>
+            <div class="em-row" id="e2">
+              <div class="em-avatar">M</div>
+              <div class="em-content" style="text-align:left;">
+                <h4>Michael Scott</h4>
+                <p>"I am currently out of the office until the 15th."</p>
+                <span class="em-tag tag-ooo">OUT OF OFFICE</span>
+                <span class="em-tag" style="background:#f3f4f6; color:#374151;">Rescheduling...</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-        
-</section>
 
-<section class="cta-section">
-  <h2>Ready to Scale Automatically?</h2>
-  <p class="cta-sub">Stop doing manual work. Let AI handle the heavy lifting.</p>
-  <a href="index.html#contact" class="btn-wa">
-    Book a Strategy Call
-  </a>
-</section>
+    </section>
 
-<footer>
-  <div class="footer-brand">ArsuAI</div>
-  <div>AI Automation Agency · Patna, Bihar · India</div>
-  <div>© 2025 ArsuAI. All rights reserved.</div>
-</footer>
+    <section class="cta-section">
+      <h2>Ready to Scale Automatically?</h2>
+      <p class="cta-sub">Stop doing manual work. Let AI handle the heavy lifting.</p>
+      <a href="index.html#contact" class="btn-wa">
+        Book a Strategy Call
+      </a>
+    </section>
 
-<script>
+    <footer>
+      <div class="footer-brand">ArsuAI</div>
+      <div>AI Automation Agency · Patna, Bihar · India</div>
+      <div>© 2025 ArsuAI. All rights reserved.</div>
+    </footer>
 
-const seq = [
-  {id:'e1', delay:500},
-  {id:'e2', delay:1500},
-];
-function runAnim() {
-  document.querySelectorAll('.em-row').forEach(el => el.classList.remove('show'));
-  seq.forEach(s => {
-    setTimeout(() => {
-      const el = document.getElementById(s.id);
-      if (el) el.classList.add('show');
-    }, s.delay);
-  });
-}
-runAnim();
-setInterval(runAnim, 5000);
-        
-</script>
-</body>
-</html>
+    <script>
+
+      const seq = [
+        { id: 'e1', delay: 500 },
+        { id: 'e2', delay: 1500 },
+      ];
+      function runAnim() {
+        document.querySelectorAll('.em-row').forEach(el => el.classList.remove('show'));
+        seq.forEach(s => {
+          setTimeout(() => {
+            const el = document.getElementById(s.id);
+            if (el) el.classList.add('show');
+          }, s.delay);
+        });
+      }
+      runAnim();
+      setInterval(runAnim, 5000);
+
+    </script>
+  </body>
+
+  </html>
+  >>>>>>> 3ddbaa0e68f4fd90192b03144dfa9a9adb552620
